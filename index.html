@@ -106,6 +106,17 @@
         .hero-visual-wrapper { grid-column: 2; grid-row: 1; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; position: relative; z-index: 1; pointer-events: none; }
         .hero-visual { width: 100%; max-width: 400px; height: auto; object-fit: contain; display: block; }
 
+        /* HERO SPLIT VISUAL */
+        .hero-split-visual { display:flex; align-items:stretch; max-width:420px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow-float); position:relative; }
+        .hsv-half { flex:1; padding:24px 16px; display:flex; flex-direction:column; align-items:center; gap:12px; position:relative; min-height:220px; }
+        .hsv-before { background:#F5F5F5; }
+        .hsv-after  { background:#F1F8E9; }
+        .hsv-label  { font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+        .hsv-before .hsv-label { color:#9E9E9E; }
+        .hsv-after  .hsv-label { color:#2E7D32; }
+        .hsv-divider { width:1px; background:#E0E0E0; flex-shrink:0; }
+        @media(max-width:768px){ .hero-split-visual { display:none; } }
+
         /* HERO MICRO-BADGE */
         .hero-primo-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); background: var(--surface-green); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--surface-green-alt); }
 
@@ -155,6 +166,22 @@
         .step-num { font-size: 3rem; font-weight: 900; color: var(--surface-green-alt); margin-bottom: 16px; line-height: 1; }
         .step-card h3 { margin-bottom: 16px; }
         .tu-fai-chiusura { text-align: center; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-top: 60px; }
+
+        /* KIT FIDELUP */
+        .kit-fidelup { padding:120px 0; background:var(--text-dark); color:white; text-align:center; }
+        .kit-eyebrow { font-size:0.9rem; font-weight:800; color:var(--primary-light); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+        .kit-fidelup h2 { color:white; margin-bottom:24px; }
+        .kit-intro { color:rgba(255,255,255,0.8); max-width:700px; margin:0 auto 60px; font-size:1.2rem; }
+        .kit-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-bottom:60px; }
+        .kit-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-lg); padding:36px 28px; text-align:left; }
+        .kit-icon { font-size:2.5rem; margin-bottom:16px; }
+        .kit-card h3 { color:white; font-size:1.1rem; margin-bottom:12px; }
+        .kit-card p  { color:rgba(255,255,255,0.75); font-size:1rem; }
+        .kit-chiusura { font-size:1.5rem; font-weight:900; color:white; }
+        @media(max-width:768px){
+            .kit-fidelup { padding:72px 0; }
+            .kit-cards { grid-template-columns:1fr; gap:16px; }
+        }
 
         /* 05 — eliminada como sección independiente, fusionada en svolta-semplice */
 
@@ -422,6 +449,7 @@
             </a>
             <nav class="nav-links">
                 <a href="#funziona">Come funziona</a>
+                <a href="#kit">Come lavoriamo</a>
                 <a href="#perche">Perché FidelUp</a>
                 <a href="#prezzi">Prezzi</a>
                 <a href="#faq">FAQ</a>
@@ -433,7 +461,7 @@
 
     <!-- BANNER DESKTOP PRIMO MESE -->
     <div class="pm-banner" id="pm-banner">
-        <span>🎁 PRIMO MESE GRATIS — PROVALO NELLA TUA ATTIVITÀ</span>
+        <span>🎁 IL PRIMO MESE È COMPLETAMENTE GRATUITO — Inizia senza rischi</span>
         <a href="#prenota">→ Scopri come</a>
         <button class="pm-banner-close" id="pm-banner-close" aria-label="Chiudi banner">✕</button>
     </div>
@@ -447,6 +475,7 @@
         </div>
         <nav class="mobile-menu-links">
             <a href="#funziona" class="mobile-link">Come funziona</a>
+            <a href="#kit" class="mobile-link">Come lavoriamo</a>
             <a href="#perche" class="mobile-link">Perché FidelUp</a>
             <a href="#prezzi" class="mobile-link">Prezzi</a>
             <a href="#faq" class="mobile-link">FAQ</a>
@@ -462,11 +491,24 @@
                 <h1>Ogni giorno entrano nuovi clienti.<br><span class="text-primary">Ma quanti ritornano?</span></h1>
                 <p>FidelUp è il servizio di fidelizzazione che fa tornare i tuoi clienti. Installiamo e gestiamo tutto noi. Tu continui a gestire la tua attività.</p>
                 <a href="#prenota" class="btn btn-primary">→ Prenota una visita gratuita</a>
-                <div class="hero-primo-badge">🎁 Primo mese gratuito — provi FidelUp prima di decidere.</div>
-                <div class="hero-microcopy">Veniamo nella tua attività. Ti spieghiamo tutto. Nessun impegno.</div>
+                <div class="hero-primo-badge">🎁 Il primo mese è totalmente gratuito — provi prima di decidere.</div>
+                <div class="hero-microcopy">Veniamo da te. Installiamo tutto. Gestione completamente in mano nostra.</div>
             </div>
             <div class="hero-visual-wrapper">
-                <img src="assets/hero_journey_t.png" alt="Il viaggio del cliente: entrano, se ne vanno, alcuni ritornano" class="hero-visual gsap-hero-visual" aria-hidden="true">
+                <div class="hero-split-visual">
+                    <div class="hsv-half hsv-before">
+                        <div class="hsv-label">Senza FidelUp</div>
+                        <img src="assets/hsv_senza.png" alt="Senza FidelUp: i clienti se ne vanno e non tornano"
+                             style="width:100%; height:auto; object-fit:contain; flex:1; min-height:0;">
+                    </div>
+                    <div class="hsv-divider"></div>
+                    <div class="hsv-half hsv-after">
+                        <div class="hsv-label">Con FidelUp</div>
+                        <img src="assets/hsv_con.png" alt="Con FidelUp: i clienti tornano"
+                             style="width:100%; height:auto; object-fit:contain; flex:1; min-height:0;">
+                        <img src="assets/nino_star_t.png" width="52" style="position:absolute;bottom:16px;right:16px;" alt="Nino FidelUp">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -475,21 +517,21 @@
     <section class="problema" id="problema">
         <div class="container">
             <h2>Il problema non è trovare clienti.<br>È farli tornare.</h2>
-            <p>Puoi avere un ottimo servizio, prezzi competitivi e clienti soddisfatti. Ma quando quel cliente esce dalla porta, non hai nessuna garanzia che tornerà. Passano i giorni. Arriva un concorrente. Il cliente si dimentica di te. E tu ricomincia da capo a cercarne un altro.</p>
+            <p>Puoi avere un ottimo servizio, prezzi competitivi e clienti soddisfatti. Ma quando quel cliente esce dalla porta, non hai nessuna garanzia che tornerà. Passano i giorni. Arriva un concorrente. Il cliente si dimentica di te. E tu sei costretto a ricominciare da capo.</p>
             
             <div class="stats-grid">
                 <div class="stat-card gsap-stat">
-                    <div class="stat-num">7×</div>
+                    <div class="stat-num" data-value="7" data-suffix="×">7×</div>
                     <div class="stat-text">Acquisire un nuovo cliente costa fino a 7 volte di più che fidelizzarne uno esistente</div>
                     <div class="stat-source">Fonte: Harvard Business Review</div>
                 </div>
                 <div class="stat-card gsap-stat">
-                    <div class="stat-num">+67%</div>
+                    <div class="stat-num" data-value="67" data-suffix="%" data-prefix="+">+67%</div>
                     <div class="stat-text">I clienti fidelizzati spendono in media il 67% in più rispetto ai clienti occasionali</div>
                     <div class="stat-source">Fonte: Bain & Company</div>
                 </div>
                 <div class="stat-card gsap-stat">
-                    <div class="stat-num">80/20</div>
+                    <div class="stat-num" data-value="80" data-suffix="/20">80/20</div>
                     <div class="stat-text">L'80% del fatturato di un'attività proviene dal 20% dei clienti più fedeli</div>
                     <div class="stat-source">Fonte: Principio di Pareto</div>
                 </div>
@@ -546,7 +588,7 @@
                 <div class="step-card gsap-step">
                     <div class="step-num">02</div>
                     <h3>Prepariamo il sistema</h3>
-                    <p>Scegliamo insieme il meccanismo più adatto ai tuoi clienti e lo personalizziamo con il tuo brand.</p>
+                    <p>Scegliamo insieme il meccanismo più adatto ai tuoi clienti e lo personalizziamo con i colori e il nome della tua attività.</p>
                 </div>
                 <div class="step-card gsap-step">
                     <div class="step-num">03</div>
@@ -556,6 +598,41 @@
             </div>
 
             <div class="tu-fai-chiusura">Tu non devi diventare un esperto di marketing.</div>
+        </div>
+    </section>
+
+    <!-- 05 IL KIT FIDELUP -->
+    <section class="kit-fidelup" id="kit">
+        <div class="container">
+            <div class="kit-eyebrow">QUANDO PRENOTI LA VISITA</div>
+            <h2>Non ti mandiamo un link.<br>
+                <span class="text-primary">Veniamo da te.</span></h2>
+            <p class="kit-intro">Quando prenoti la visita gratuita, un membro del team FidelUp
+            viene direttamente nella tua attività. Portiamo il kit professionale, configuriamo
+            il sistema sulla tua clientela e spieghiamo in cinque minuti cosa deve fare il tuo
+            staff. Tutto pronto. Zero lavoro per te.</p>
+            <div class="kit-cards">
+                <div class="kit-card gsap-kit">
+                    <div class="kit-icon">📍</div>
+                    <h3>Presenza fisica</h3>
+                    <p>Veniamo nel tuo locale, installiamo il materiale e configuriamo tutto.
+                    Non partiamo finché non funziona.</p>
+                </div>
+                <div class="kit-card gsap-kit">
+                    <div class="kit-icon">🎨</div>
+                    <h3>Kit personalizzato</h3>
+                    <p>QR code, espositore e materiale con il tuo logo e i tuoi colori.
+                    Non un kit generico — il tuo kit.</p>
+                </div>
+                <div class="kit-card gsap-kit">
+                    <div class="kit-icon">📅</div>
+                    <h3>Gestione mensile</h3>
+                    <p>Ogni mese ti seguiamo: aggiorniamo le campagne, analizziamo i dati
+                    e ti portiamo il report.</p>
+                </div>
+            </div>
+            <div class="kit-chiusura">Nessun altro servizio di fidelizzazione fa questo.
+                <br><span class="text-primary">Solo FidelUp.</span></div>
         </div>
     </section>
 
@@ -673,7 +750,7 @@
                 <div class="qn-col fidelup gsap-qn">
                     <h3>FIDELUP</h3>
                     <div class="qn-item">Configura il sistema</div>
-                    <div class="qn-item">Personalizza l'esperienza</div>
+                    <div class="qn-item">Personalizza tutto con il tuo brand</div>
                     <div class="qn-item">Installa il materiale</div>
                     <div class="qn-item">Gestisce ogni mese</div>
                     <div class="qn-item">Ti accompagna sempre</div>
@@ -724,8 +801,8 @@
             </div>
 
             <div class="perche-chiusura">
-                La differenza non è quello che utilizzi.<br>
-                È quanto lavoro devi fare tu.
+                La differenza non è lo strumento.<br>
+                È chi lo gestisce per te.
             </div>
 
             <div class="perche-reminder">
@@ -740,7 +817,7 @@
         <div class="container">
             <div class="pm-eyebrow">PROVALO NELLA TUA ATTIVITÀ</div>
             <h2>Il primo mese è €0.</h2>
-            <p>Installiamo FidelUp nella tua attività e lo provi direttamente con i tuoi clienti. Puoi vedere come funziona, capire come reagiscono i tuoi clienti e valutare il servizio prima di decidere. Se vuoi continuare, continui. Se non vuoi, ti fermi.</p>
+            <p>Installiamo FidelUp nella tua attività e lo provi direttamente con i tuoi clienti. Vedi come funziona, osservi come reagiscono i tuoi clienti e valuti il servizio. Poi decidi. Se vuoi continuare, continui. Se non vuoi, ti fermi.</p>
             
             <div class="pm-zero gsap-zero">€0</div>
             
@@ -785,7 +862,7 @@
                         <li>Personalizzazione brand</li>
                         <li>Gestione continuativa</li>
                         <li>Report mensile</li>
-                        <li>Supporto diretto e presenza continuativa nel tuo locale.</li>
+                        <li>Campagne email settimanali</li>
                     </ul>
                 </div>
 
@@ -987,25 +1064,42 @@
         if (closeMenuBtn)  closeMenuBtn.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // FAQ accordion
+        // FAQ accordion — altezza animata con GSAP
         document.querySelectorAll('.faq-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const item = btn.closest('.faq-item');
                 const answer = document.getElementById(btn.getAttribute('aria-controls'));
                 const isOpen = item.classList.contains('active');
 
+                // Chiudi tutti gli altri
                 document.querySelectorAll('.faq-item').forEach(i => {
+                    if (i === item) return;
                     i.classList.remove('active');
                     const a = i.querySelector('.faq-a');
                     const b = i.querySelector('.faq-btn');
-                    if (a) a.style.display = 'none';
+                    if (a && typeof gsap !== 'undefined') {
+                        gsap.to(a, { height: 0, opacity: 0, duration: 0.3, onComplete: () => a.style.display = 'none' });
+                    } else if (a) {
+                        a.style.display = 'none';
+                    }
                     if (b) b.setAttribute('aria-expanded', 'false');
                 });
 
                 if (!isOpen) {
                     item.classList.add('active');
-                    if (answer) answer.style.display = 'block';
+                    answer.style.display = 'block';
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo(answer, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power2.out' });
+                    }
                     btn.setAttribute('aria-expanded', 'true');
+                } else {
+                    item.classList.remove('active');
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(answer, { height: 0, opacity: 0, duration: 0.3, onComplete: () => answer.style.display = 'none' });
+                    } else {
+                        answer.style.display = 'none';
+                    }
+                    btn.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -1084,7 +1178,13 @@
             if (prefersReduced) return;
 
             // Hero visual entrance
-            gsap.from('.gsap-hero-visual', { opacity: 0, x: 40, duration: 1, ease: 'power2.out' });
+            gsap.from('.hsv-before', { x: -20, opacity: 0, duration: 0.7, ease: 'power2.out' });
+            gsap.from('.hsv-after', { x: 20, opacity: 0, duration: 0.7, delay: 0.3, ease: 'power2.out' });
+
+            // PARTE A — Hero content stagger
+            gsap.from('.hero-eyebrow, .hero h1, .hero p, .hero-primo-badge, .hero-microcopy', {
+                y: 20, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', clearProps: 'opacity,transform'
+            });
 
             // Problema stats
             gsap.from('.gsap-stat', {
@@ -1102,6 +1202,12 @@
             gsap.from('.gsap-step', {
                 scrollTrigger: { trigger: '.tu-fai', start: 'top 70%' },
                 y: 40, opacity: 0, duration: 0.6, stagger: 0.2
+            });
+
+            // Kit FidelUp
+            gsap.from(".gsap-kit", {
+                scrollTrigger: { trigger:".kit-fidelup", start:"top 70%" },
+                y:30, opacity:0, duration:0.7, stagger:0.15, ease:"power3.out"
             });
 
             // Meccanismi — card entrance
@@ -1181,6 +1287,22 @@
             gsap.from('.gsap-price', {
                 scrollTrigger: { trigger: '.prezzi', start: 'top 70%' },
                 y: 40, opacity: 0, duration: 0.8, stagger: 0.2
+            });
+
+            // PARTE B — Contatori animati stat-num
+            document.querySelectorAll('.stat-num').forEach(el => {
+                const target = parseFloat(el.dataset.value);
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                if (isNaN(target)) return;
+                const obj = { val: 0 };
+                ScrollTrigger.create({
+                    trigger: el, start: 'top 80%', once: true,
+                    onEnter: () => gsap.to(obj, {
+                        val: target, duration: 1.4, ease: 'power2.out',
+                        onUpdate: () => { el.textContent = prefix + Math.round(obj.val) + suffix; }
+                    })
+                });
             });
             // Mobile Sticky CTA visibility
             const stickyCta = document.getElementById('mobile-sticky-cta');
