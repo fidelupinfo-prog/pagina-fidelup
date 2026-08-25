@@ -446,16 +446,35 @@
             }
 
             /* Sections padding — hero ya tiene padding propio arriba */
-            .problema, .svolta-semplice, .tu-fai,
+            .svolta-semplice, .tu-fai,
             .meccanismi, .quasi-niente, .perche, .primo-mese,
             .prezzi, .faq, .cta-final { padding: 72px 0; }
 
+            /* 02 IL PROBLEMA MOBILE */
+            .problema {
+                padding: 48px 0 56px; /* Transición rápida desde el hero */
+            }
+            .problema h2 {
+                font-size: clamp(1.75rem, 7.5vw, 2.1rem);
+                line-height: 1.08;
+                margin-bottom: 16px;
+            }
+            .problema p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
             /* Stats */
-            .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 12px; margin: 32px 0; }
+            .stat-card { padding: 24px 20px; border-radius: 18px; }
+            .stat-num { font-size: 2.8rem; margin-bottom: 8px; }
+            .stat-text { font-size: 0.95rem; line-height: 1.4; margin-bottom: 8px; }
+            .stat-source { font-size: 0.72rem; }
 
             /* Problema nino */
-            .problema-nino-wrap { flex-direction: column; align-items: center; gap: 16px; }
-            .problema-nino-wrap img { height: 120px; }
+            .problema-nino-wrap { flex-direction: column; align-items: center; gap: 12px; margin-top: 32px; }
+            .problema-nino-wrap img { height: 100px; }
+            .problema-nino-wrap span { padding: 14px 18px; font-size: 0.9rem; }
             .problema-nino-wrap span::before { top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg); }
 
             /* Svolta-Semplice */
