@@ -103,8 +103,8 @@
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; }
         .hero-eyebrow { font-size: 0.9rem; font-weight: 800; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
         .hero h1 { margin-bottom: 24px; }
-        .hero p { font-size: 1.25rem; margin-bottom: 40px; max-width: 600px; color: var(--text-dark); font-weight: 500; }
-        .hero-microcopy { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; font-weight: 500; }
+        .hero p { font-size: 1.25rem; margin-bottom: 40px; max-width: 600px; color: var(--text-muted); font-weight: 400; line-height: 1.6; }
+        .hero-microcopy { font-size: 0.85rem; color: var(--text-muted); opacity: 0.8; margin-top: 16px; font-weight: 400; }
         
         .hero-visual-wrapper { grid-column: 2; grid-row: 1; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; position: relative; z-index: 1; pointer-events: none; }
         .hero-visual { width: 100%; max-width: 400px; height: auto; object-fit: contain; display: block; }
@@ -121,7 +121,7 @@
         @media(max-width:768px){ .hero-split-visual { display:none; } }
 
         /* HERO MICRO-BADGE */
-        .hero-primo-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); background: var(--surface-green); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--surface-green-alt); }
+        .hero-primo-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); background: rgba(46, 125, 50, 0.08); padding: 8px 16px; border-radius: 12px; }
 
         /* DESKTOP BANNER PRIMO MESE */
         .pm-banner { display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--primary-dark); color: white; padding: 10px 24px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; position: fixed; top: 60px; left: 0; right: 0; z-index: 999; transition: transform 0.3s ease; }
@@ -394,24 +394,26 @@
             .hero-visual-wrapper { display: none; }
 
             /* Hero eyebrow */
-            .hero-eyebrow { font-size: 0.75rem; margin-bottom: 10px; }
+            .hero-eyebrow { font-size: 0.75rem; margin-bottom: 16px; }
 
             /* Headline responsive y bien compuesto */
             .hero h1 {
                 font-size: clamp(1.85rem, 8.5vw, 2.2rem);
                 line-height: 1.08;
                 letter-spacing: -0.025em;
-                margin-bottom: 14px;
+                margin-bottom: 20px;
             }
 
             /* Subheadline */
             .hero p {
-                font-size: 1.06rem;
+                font-size: 1.05rem;
                 line-height: 1.5;
-                max-width: 340px;
+                color: var(--text-muted);
+                font-weight: 400;
+                max-width: 320px;
                 margin-left: auto;
                 margin-right: auto;
-                margin-bottom: 24px;
+                margin-bottom: 32px;
             }
 
             /* CTA principal hero */
@@ -421,6 +423,7 @@
                 min-height: 56px;
                 padding: 14px 20px;
                 font-size: 1.06rem;
+                margin-bottom: 16px;
             }
 
             /* Badge reassurance — visual pill, NO botón */
@@ -428,21 +431,24 @@
                 width: 100%;
                 max-width: 100%;
                 padding: 12px 16px;
-                font-size: 0.875rem;
-                line-height: 1.35;
-                margin-top: 12px;
-                border-radius: 999px;
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-top: 0;
+                border-radius: 12px;
                 justify-content: center;
                 text-align: center;
                 display: flex;
+                background: rgba(46, 125, 50, 0.06);
+                color: var(--primary-dark);
             }
 
             /* Microcopy */
             .hero-microcopy {
-                font-size: 0.875rem;
+                font-size: 0.8rem;
                 line-height: 1.4;
-                max-width: 330px;
-                margin: 14px auto 0;
+                max-width: 300px;
+                margin: 20px auto 0;
+                opacity: 0.6;
             }
 
             /* Sections padding — hero ya tiene padding propio arriba */
