@@ -78,21 +78,24 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            padding-bottom: max(12px, env(safe-area-inset-bottom));
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px;
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+            box-shadow: 0 -1px 12px rgba(0,0,0,0.06);
             z-index: 999;
             text-align: center;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0,0,0,0.06);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .mobile-sticky-cta .btn {
             width: 100%;
-            padding: 14px 24px;
+            padding: 14px 20px;
             font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(46,125,50,0.2);
+            min-height: 52px;
+            border-radius: 999px;
+            box-shadow: 0 4px 14px rgba(46,125,50,0.22);
         }
 
         /* 01 HERO */
@@ -329,14 +332,14 @@
         .wa-float:hover { transform: scale(1.1); }
         .wa-float svg { width: 32px; height: 32px; fill: currentColor; }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE — 992px (tablet) */
         @media (max-width: 992px) {
             .mobile-sticky-cta { display: block; }
-            .wa-float { bottom: 90px; right: 20px; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: flex; }
             .hero-grid { display: flex; flex-direction: column; text-align: center; gap: 0; }
             .hero-content { order: 1; margin-top: 10px; }
+            /* wrapper visible en tablet, oculto en mobile — ver 768px */
             .hero-visual-wrapper { order: 2; position: relative; width: 90%; margin: 40px auto 0; opacity: 1; }
             .stats-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -352,17 +355,15 @@
             .pm-benefits { flex-direction: column; align-items: center; }
             .problema-nino-wrap, .pm-nino, .cta-nino { flex-direction: column; text-align: center; }
             .problema-nino-wrap span::before, .pm-nino span::before, .cta-nino span::before { top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg); }
-            /* Ocultar banner en tablet/mobile */
             .pm-banner { display: none; }
+            .wa-float { bottom: 90px; right: 20px; }
         }
 
-        /* ========================
-           MOBILE — 768px and below
-           ======================== */
+        /* MOBILE — 768px and below */
         @media (max-width: 768px) {
 
-            /* Global: add bottom clearance for sticky CTA */
-            body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+            /* Body bottom clearance for sticky CTA (~72px) */
+            body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 
             /* Nav */
             .nav-links { display: none; }
@@ -370,11 +371,11 @@
 
             /* Sticky CTA */
             .mobile-sticky-cta { display: block; }
-            .mobile-sticky-cta .btn { font-size: 0.95rem; padding: 13px 20px; }
+            .mobile-sticky-cta .btn { font-size: 1rem; padding: 14px 20px; }
 
-            /* WhatsApp — sits just above sticky CTA bar */
+            /* WhatsApp — above sticky CTA */
             .wa-float {
-                bottom: calc(72px + env(safe-area-inset-bottom) + 12px);
+                bottom: calc(76px + env(safe-area-inset-bottom) + 12px);
                 right: 16px;
                 width: 48px;
                 height: 48px;
@@ -382,22 +383,70 @@
             .wa-float svg { width: 24px; height: 24px; }
 
             /* === HERO MOBILE === */
-            .hero { padding: 100px 0 60px; }
+            .hero {
+                padding-top: 88px;   /* header ~64px + 24px respiro */
+                padding-bottom: 40px;
+            }
             .hero-grid { display: flex; flex-direction: column; gap: 0; text-align: center; }
-            
-            .hero-content { order: 1; margin-top: 10px; }
-            .hero-visual-wrapper { order: 2; position: relative; top: auto; transform: none; right: auto; width: 85%; max-width: 320px; margin: 30px auto 0; opacity: 1; }
+            .hero-content { order: 1; margin-top: 0; }
 
-            /* Hero text */
+            /* Ocultar completamente el wrapper visual — split-visual ya es display:none */
+            .hero-visual-wrapper { display: none; }
+
+            /* Hero eyebrow */
             .hero-eyebrow { font-size: 0.75rem; margin-bottom: 10px; }
-            .hero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 14px; }
-            .hero p { font-size: 1rem; margin-bottom: 24px; }
-            .hero .btn { width: 100%; }
-            .hero-microcopy { font-size: 0.85rem; }
-            .pm-banner { display: none; }
 
-            /* Sections padding */
-            .hero, .problema, .svolta-semplice, .tu-fai,
+            /* Headline responsive y bien compuesto */
+            .hero h1 {
+                font-size: clamp(1.85rem, 8.5vw, 2.2rem);
+                line-height: 1.08;
+                letter-spacing: -0.025em;
+                margin-bottom: 14px;
+            }
+
+            /* Subheadline */
+            .hero p {
+                font-size: 1.06rem;
+                line-height: 1.5;
+                max-width: 340px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 24px;
+            }
+
+            /* CTA principal hero */
+            .hero .btn {
+                width: 100%;
+                max-width: 100%;
+                min-height: 56px;
+                padding: 14px 20px;
+                font-size: 1.06rem;
+            }
+
+            /* Badge reassurance — visual pill, NO botón */
+            .hero-primo-badge {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 16px;
+                font-size: 0.875rem;
+                line-height: 1.35;
+                margin-top: 12px;
+                border-radius: 999px;
+                justify-content: center;
+                text-align: center;
+                display: flex;
+            }
+
+            /* Microcopy */
+            .hero-microcopy {
+                font-size: 0.875rem;
+                line-height: 1.4;
+                max-width: 330px;
+                margin: 14px auto 0;
+            }
+
+            /* Sections padding — hero ya tiene padding propio arriba */
+            .problema, .svolta-semplice, .tu-fai,
             .meccanismi, .quasi-niente, .perche, .primo-mese,
             .prezzi, .faq, .cta-final { padding: 72px 0; }
 
@@ -409,7 +458,7 @@
             .problema-nino-wrap img { height: 120px; }
             .problema-nino-wrap span::before { top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg); }
 
-            /* Svolta-Semplice combinada */
+            /* Svolta-Semplice */
             .ss-steps { grid-template-columns: 1fr; gap: 20px; }
             .perche-reminder { padding: 20px 16px; }
 
@@ -429,7 +478,7 @@
             .table-cell { padding: 16px; font-size: 1rem; }
             .table-cell:nth-child(1) { background: #FAFAFA; font-weight: 700; color: var(--text-muted); }
 
-            /* Primo mese Nino */
+            /* Primo mese */
             .pm-nino { flex-direction: column; align-items: center; gap: 16px; }
             .pm-nino img { height: 120px; }
             .pm-nino span::before { top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg); }
@@ -449,10 +498,9 @@
             .cta-nino span::before { top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg); }
         }
 
-        /* Extra small — 375px */
+        /* Extra small — 390px and below */
         @media (max-width: 390px) {
-            .hero h1 { font-size: 1.7rem; }
-            .hero-visual-wrapper { max-width: 280px; }
+            .hero h1 { font-size: clamp(1.7rem, 9vw, 1.9rem); }
         }
     </style>
 </head>
