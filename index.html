@@ -99,7 +99,7 @@
         }
 
         /* 01 HERO */
-        .hero { background: linear-gradient(180deg, #F1F8E9 0%, #FFFFFF 100%); padding: 160px 0 100px; overflow: hidden; }
+        .hero { background: linear-gradient(180deg, #F1F8E9 0%, #FFFFFF 100%); padding: 160px 0 100px; overflow: visible; }
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; }
         .hero-eyebrow { font-size: 0.9rem; font-weight: 800; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
         .hero h1 { margin-bottom: 24px; }
@@ -384,17 +384,26 @@
 
             /* === HERO MOBILE === */
             .hero {
-                padding-top: 88px;   /* header ~64px + 24px respiro */
-                padding-bottom: 40px;
+                padding-top: 96px;   /* header ~64px + 32px de aire = sin solapamiento */
+                padding-bottom: 48px;
+                overflow: visible;   /* nunca recortar el h1 en mobile */
             }
             .hero-grid { display: flex; flex-direction: column; gap: 0; text-align: center; }
             .hero-content { order: 1; margin-top: 0; }
 
-            /* Imagen Nino arriba del texto en mobile */
+            /* Imagen Nino arriba del texto en mobile.
+               IMPORTANTE: resetear TODAS las propiedades del wrapper que
+               hereda del desktop (position, height, z-index, display)
+               para evitar solapamientos con el hero-content. */
             .hero-visual-wrapper {
                 order: 0;
+                position: static;    /* resetear position:relative del 992px */
+                display: block;      /* resetear display:flex del desktop */
+                height: auto;        /* resetear height:100% del desktop */
+                z-index: auto;       /* resetear z-index:1 del desktop */
+                pointer-events: auto;
                 width: 100%;
-                margin: 0 0 20px;
+                margin: 0 0 24px;
             }
             .hero-main-img {
                 width: 100%;
@@ -404,6 +413,7 @@
                 object-position: center 30%;
                 border-radius: 16px;
                 display: block;
+                box-shadow: none;
             }
 
             /* Hero eyebrow */
