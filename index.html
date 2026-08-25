@@ -109,16 +109,16 @@
         .hero-visual-wrapper { grid-column: 2; grid-row: 1; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; position: relative; z-index: 1; pointer-events: none; }
         .hero-visual { width: 100%; max-width: 400px; height: auto; object-fit: contain; display: block; }
 
-        /* HERO SPLIT VISUAL */
-        .hero-split-visual { display:flex; align-items:stretch; max-width:420px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow-float); position:relative; }
-        .hsv-half { flex:1; padding:24px 16px; display:flex; flex-direction:column; align-items:center; gap:12px; position:relative; min-height:220px; }
-        .hsv-before { background:#F5F5F5; }
-        .hsv-after  { background:#F1F8E9; }
-        .hsv-label  { font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
-        .hsv-before .hsv-label { color:#9E9E9E; }
-        .hsv-after  .hsv-label { color:#2E7D32; }
-        .hsv-divider { width:1px; background:#E0E0E0; flex-shrink:0; }
-        @media(max-width:768px){ .hero-split-visual { display:none; } }
+        /* HERO MAIN VISUAL */
+        .hero-main-img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-float);
+            display: block;
+            object-fit: cover;
+        }
 
         /* HERO MICRO-BADGE */
         .hero-primo-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); background: rgba(46, 125, 50, 0.08); padding: 8px 16px; border-radius: 12px; }
@@ -390,8 +390,9 @@
             .hero-grid { display: flex; flex-direction: column; gap: 0; text-align: center; }
             .hero-content { order: 1; margin-top: 0; }
 
-            /* Ocultar completamente el wrapper visual — split-visual ya es display:none */
-            .hero-visual-wrapper { display: none; }
+            /* El wrapper visual se coloca arriba en mobile */
+            .hero-visual-wrapper { display: block; order: 0; width: 100%; margin: 0 auto 24px; }
+            .hero-main-img { border-radius: 16px; max-width: 100%; }
 
             /* Hero eyebrow */
             .hero-eyebrow { font-size: 0.75rem; margin-bottom: 16px; }
@@ -585,20 +586,7 @@
                 <div class="hero-microcopy">Veniamo da te. Installiamo tutto. Gestione completamente in mano nostra.</div>
             </div>
             <div class="hero-visual-wrapper">
-                <div class="hero-split-visual">
-                    <div class="hsv-half hsv-before">
-                        <div class="hsv-label">Senza FidelUp</div>
-                        <img src="assets/hsv_senza.png" alt="Senza FidelUp: i clienti se ne vanno e non tornano"
-                             style="width:100%; height:auto; object-fit:contain; flex:1; min-height:0;">
-                    </div>
-                    <div class="hsv-divider"></div>
-                    <div class="hsv-half hsv-after">
-                        <div class="hsv-label">Con FidelUp</div>
-                        <img src="assets/hsv_con.png" alt="Con FidelUp: i clienti tornano"
-                             style="width:100%; height:auto; object-fit:contain; flex:1; min-height:0;">
-                        <img src="assets/nino_star_t.png" width="52" style="position:absolute;bottom:16px;right:16px;" alt="Nino FidelUp">
-                    </div>
-                </div>
+                <img src="assets/hero_main.jpg" alt="FidelUp in azione" class="hero-main-img">
             </div>
         </div>
     </section>
