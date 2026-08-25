@@ -390,9 +390,21 @@
             .hero-grid { display: flex; flex-direction: column; gap: 0; text-align: center; }
             .hero-content { order: 1; margin-top: 0; }
 
-            /* El wrapper visual se coloca arriba en mobile */
-            .hero-visual-wrapper { display: block; order: 0; width: 100%; margin: 0 auto 24px; }
-            .hero-main-img { border-radius: 16px; max-width: 100%; }
+            /* Imagen Nino arriba del texto en mobile */
+            .hero-visual-wrapper {
+                order: 0;
+                width: 100%;
+                margin: 0 0 20px;
+            }
+            .hero-main-img {
+                width: 100%;
+                max-width: 100%;
+                height: 220px;
+                object-fit: cover;
+                object-position: center 30%;
+                border-radius: 16px;
+                display: block;
+            }
 
             /* Hero eyebrow */
             .hero-eyebrow { font-size: 0.75rem; margin-bottom: 16px; }
