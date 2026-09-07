@@ -138,6 +138,43 @@
     .error-msg { color: #D32F2F; font-size: 0.85rem; font-weight: 600; display: none; margin-top: 4px; }
     
     .footer { text-align: center; font-size: 0.8rem; color: var(--text-muted); padding: 24px 0; margin-top: auto; }
+
+    /* NUOVO STILE SLIDE 0 */
+    .top-badge-wrap { text-align: center; margin-bottom: 24px; margin-top: 16px; }
+    .top-badge {
+        display: inline-flex; align-items: center; justify-content: center;
+        border: 1.5px solid var(--primary);
+        color: var(--primary-dark);
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: #F1F8F1;
+    }
+    
+    .animated-nino { margin-bottom: 24px; }
+    .animated-nino img {
+        animation: floatNino 3s ease-in-out infinite;
+        background: #F4F9F4;
+        border-radius: 50%;
+        padding: 16px;
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    @keyframes floatNino {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0); }
+    }
+    
+    #screen-0 .title-main { text-transform: none; font-size: clamp(1.8rem, 8vw, 2.4rem); margin-bottom: 20px; }
+    #screen-0 .subtitle { font-size: 1.05rem; font-weight: 400; max-width: 90%; margin: 0 auto 32px; color: var(--text-muted); line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -151,12 +188,14 @@
 
     <!-- SLIDE 0: APERTURA -->
     <section class="screen active" id="screen-0">
-        <div class="nino-wrap"><img src="assets/nino.png" alt="Nino Pensieroso"></div>
-        <h1 class="title-main">QUANTO TI COSTANO I CLIENTI CHE NON TORNANO?</h1>
-        <p class="subtitle">Ogni giorno un cliente esce dalla tua barberia. La domanda è semplice: quanto di quel rapporto riesci davvero a portarti dietro fino alla prossima visita?</p>
-        <p style="text-align: center; margin-bottom: 32px; font-weight: 600;">Rispondi a 7 domande. Ci vogliono meno di 2 minuti.<br>Alla fine vedrai dove stai perdendo opportunità di ritorno e cosa puoi fare per aumentare la fidelizzazione.</p>
+        <div class="top-badge-wrap">
+            <span class="top-badge">✓ CHECK-UP GRATUITO · 2 MINUTI</span>
+        </div>
+        <div class="nino-wrap animated-nino"><img src="assets/nino.png" alt="Nino Barber"></div>
+        <h1 class="title-main">Quanto ti costano i clienti<br>che non tornano?</h1>
+        <p class="subtitle">7 domande veloci per scoprire dove perdi clienti<br>— e cosa fare per farli tornare.</p>
         <button class="btn btn-primary" onclick="nextScreen(1)">Inizia la diagnosi →</button>
-        <div class="microcopy">Non è un test. È un check-up della tua barberia.</div>
+        <div class="microcopy">Gratis. Nessun impegno.</div>
     </section>
 
     <!-- SLIDE 1: Q1 -->
