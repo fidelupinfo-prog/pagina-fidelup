@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 280" width="100%" height="100%">
+  <defs>
+    <!-- Skin Gradients -->
+    <linearGradient id="ninoSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#81C784"/>
+      <stop offset="40%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <linearGradient id="ninoSkinLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#4CAF50"/>
+    </linearGradient>
+    <linearGradient id="ninoBelly" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#DCEDC8"/>
+      <stop offset="100%" stop-color="#AED581"/>
+    </linearGradient>
+    <!-- Shirt Gradient -->
+    <linearGradient id="ninoShirt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B5E20"/>
+      <stop offset="60%" stop-color="#144A18"/>
+      <stop offset="100%" stop-color="#0B2E10"/>
+    </linearGradient>
+    <!-- Eye Gradient -->
+    <radialGradient id="eyeTurret" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="65%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </radialGradient>
+    <radialGradient id="eyePupil" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#37474F"/>
+      <stop offset="60%" stop-color="#212121"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="tailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2E7D32"/>
+      <stop offset="60%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#81C784"/>
+    </linearGradient>
+    <!-- Shadow Filter -->
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#1B5E20" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softGlow)">
+    <!-- Ground Shadow -->
+    <ellipse cx="130" cy="265" rx="75" ry="10" fill="#1B5E20" opacity="0.15"/>
+
+    <!-- TAIL (Curled Spiral) -->
+    <g id="tail">
+      <path d="M175 190 C 215 195, 235 155, 215 130 C 195 105, 160 120, 165 145 C 169 165, 192 165, 195 150 C 197 138, 185 132, 178 138" 
+            fill="none" stroke="url(#tailGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Tail Scales / Accents -->
+      <circle cx="218" cy="142" r="3.5" fill="#C8E6C9" opacity="0.8"/>
+      <circle cx="210" cy="125" r="3" fill="#C8E6C9" opacity="0.8"/>
+      <circle cx="188" cy="115" r="3" fill="#C8E6C9" opacity="0.8"/>
+      <circle cx="170" cy="130" r="2.5" fill="#C8E6C9" opacity="0.8"/>
+    </g>
+
+    <!-- LEFT FOOT -->
+    <path d="M102 252 C98 256, 85 264, 88 268 C92 271, 108 266, 114 260 C118 256, 114 250, 102 252 Z" fill="url(#ninoSkin)"/>
+    <circle cx="91" cy="266" r="3.5" fill="#388E3C"/>
+    <circle cx="97" cy="268" r="3.5" fill="#388E3C"/>
+    <circle cx="104" cy="266" r="3.5" fill="#388E3C"/>
+
+    <!-- RIGHT FOOT -->
+    <path d="M152 252 C156 256, 169 264, 166 268 C162 271, 146 266, 140 260 C136 256, 140 250, 152 252 Z" fill="url(#ninoSkin)"/>
+    <circle cx="163" cy="266" r="3.5" fill="#388E3C"/>
+    <circle cx="157" cy="268" r="3.5" fill="#388E3C"/>
+    <circle cx="150" cy="266" r="3.5" fill="#388E3C"/>
+
+    <!-- LEGS -->
+    <path d="M105 220 L102 254 L118 253 L120 220 Z" fill="url(#ninoSkin)"/>
+    <path d="M148 220 L146 254 L132 253 L134 220 Z" fill="url(#ninoSkin)"/>
+
+    <!-- BODY & BELLY (Behind Shirt) -->
+    <ellipse cx="128" cy="180" rx="42" ry="46" fill="url(#ninoSkin)"/>
+
+    <!-- SHIRT (FidelUp T-Shirt) -->
+    <path d="M92 162 C90 148, 106 142, 128 142 C150 142, 166 148, 164 162 L168 214 C168 220, 154 225, 128 225 C102 225, 88 220, 88 214 Z" fill="url(#ninoShirt)"/>
+    <!-- Shirt Sleeves -->
+    <path d="M96 148 L76 172 C73 176, 78 183, 85 180 L94 172 Z" fill="#144A18"/>
+    <path d="M160 148 L180 172 C183 176, 178 183, 171 180 L162 172 Z" fill="#144A18"/>
+    <!-- Shirt Collar -->
+    <path d="M112 144 C116 150, 140 150, 144 144" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- FIDELUP LOGO ON SHIRT -->
+    <text x="128" y="185" font-family="'Outfit', -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.3">FidelUp</text>
+    <!-- Little chameleon dot on shirt -->
+    <circle cx="128" cy="195" r="2" fill="#81C784"/>
+
+    <!-- LEFT ARM (Resting on hip) -->
+    <path d="M174 176 Q 192 190, 178 206 Q 170 214, 162 208" fill="none" stroke="url(#ninoSkin)" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- RIGHT ARM (Pointing up smartly!) -->
+    <g id="pointingHand">
+      <path d="M82 175 C68 165, 62 145, 68 128 C70 122, 76 123, 76 130 C74 144, 78 155, 88 168 Z" fill="url(#ninoSkin)"/>
+      <ellipse cx="69" cy="124" rx="7" ry="8" fill="url(#ninoSkin)"/>
+      <rect x="66" y="104" width="7" height="18" rx="3.5" fill="url(#ninoSkinLight)"/>
+      <circle cx="74" cy="122" r="4" fill="url(#ninoSkin)"/>
+      <circle cx="64" cy="126" r="3.5" fill="url(#ninoSkin)"/>
+      <!-- Sparkle at fingertip -->
+      <path d="M69.5 96 L71 101 L76 102.5 L71 104 L69.5 109 L68 104 L63 102.5 L68 101 Z" fill="#FDD835"/>
+    </g>
+
+    <!-- HEAD & CREST -->
+    <path d="M110 52 C115 42, 130 38, 142 42 C154 46, 164 58, 160 72 C156 82, 150 86, 145 88" 
+          fill="none" stroke="url(#ninoSkin)" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="120" cy="46" r="5" fill="#81C784"/>
+    <circle cx="132" cy="43" r="5.5" fill="#A5D6A7"/>
+    <circle cx="145" cy="48" r="5" fill="#81C784"/>
+    <circle cx="155" cy="58" r="4" fill="#66BB6A"/>
+
+    <path d="M92 98 C82 76, 102 54, 126 54 C152 54, 168 74, 166 98 C164 122, 146 136, 126 136 C104 136, 96 116, 92 98 Z" fill="url(#ninoSkin)"/>
+
+    <!-- SNOUT / CHEEKS -->
+    <path d="M96 112 C96 100, 110 94, 128 94 C146 94, 156 100, 156 112 C156 128, 144 136, 128 136 C110 136, 96 128, 96 112 Z" fill="url(#ninoSkinLight)"/>
+    <circle cx="123" cy="104" r="1.5" fill="#2E7D32"/>
+    <circle cx="133" cy="104" r="1.5" fill="#2E7D32"/>
+
+    <!-- SMILING MOUTH -->
+    <path d="M112 115 Q128 132 144 115" fill="#B71C1C" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M121 122 Q128 127 135 122 Q128 131 121 122 Z" fill="#EF5350"/>
+
+    <!-- EYES -->
+    <circle cx="106" cy="80" r="22" fill="url(#eyeTurret)"/>
+    <circle cx="106" cy="80" r="17" fill="#FFFFFF"/>
+    <circle cx="108" cy="80" r="10" fill="url(#eyePupil)"/>
+    <circle cx="105" cy="76" r="3.5" fill="#FFFFFF"/>
+    <circle cx="112" cy="83" r="1.8" fill="#FFFFFF"/>
+
+    <circle cx="148" cy="80" r="22" fill="url(#eyeTurret)"/>
+    <circle cx="148" cy="80" r="17" fill="#FFFFFF"/>
+    <circle cx="146" cy="80" r="10" fill="url(#eyePupil)"/>
+    <circle cx="143" cy="76" r="3.5" fill="#FFFFFF"/>
+    <circle cx="150" cy="83" r="1.8" fill="#FFFFFF"/>
+
+    <path d="M90 70 Q106 58 122 72" fill="none" stroke="#2E7D32" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M132 72 Q148 58 164 70" fill="none" stroke="#2E7D32" stroke-width="3.5" stroke-linecap="round"/>
+
+    <ellipse cx="98" cy="112" rx="5" ry="3" fill="#EF5350" opacity="0.35"/>
+    <ellipse cx="154" cy="112" rx="5" ry="3" fill="#EF5350" opacity="0.35"/>
+  </g>
+</svg>

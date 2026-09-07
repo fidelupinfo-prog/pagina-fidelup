@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="badgeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8F5E9"/>
+      <stop offset="100%" stop-color="#C8E6C9"/>
+    </linearGradient>
+    <linearGradient id="headSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#81C784"/>
+      <stop offset="40%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <linearGradient id="headSkinLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#4CAF50"/>
+    </linearGradient>
+    <radialGradient id="eyePupilSmall" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#37474F"/>
+      <stop offset="60%" stop-color="#212121"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <clipPath id="circleClip">
+      <circle cx="50" cy="50" r="47"/>
+    </clipPath>
+  </defs>
+
+  <!-- Circular Badge Background with Border -->
+  <circle cx="50" cy="50" r="48" fill="url(#badgeBg)" stroke="#2E7D32" stroke-width="2.5"/>
+
+  <g clip-path="url(#circleClip)">
+    <!-- Nino Shirt Collar in Avatar -->
+    <path d="M25 88 Q50 80 75 88 L85 105 L15 105 Z" fill="#1B5E20"/>
+    <path d="M40 84 Q50 90 60 84" fill="none" stroke="#2E7D32" stroke-width="2.5"/>
+
+    <!-- Chameleon Crest on Top -->
+    <path d="M40 22 C43 14, 55 12, 63 15 C71 18, 77 26, 75 35" 
+          fill="none" stroke="url(#headSkin)" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="48" cy="16" r="3.5" fill="#81C784"/>
+    <circle cx="58" cy="15" r="3.8" fill="#A5D6A7"/>
+    <circle cx="68" cy="19" r="3" fill="#81C784"/>
+
+    <!-- Nino Head -->
+    <path d="M28 50 C22 34, 36 20, 52 20 C70 20, 80 34, 78 50 C76 68, 65 76, 52 76 C37 76, 31 63, 28 50 Z" fill="url(#headSkin)"/>
+
+    <!-- Snout / Cheeks -->
+    <path d="M32 58 C32 50, 42 46, 52 46 C64 46, 72 50, 72 58 C72 70, 64 76, 52 76 C40 76, 32 70, 32 58 Z" fill="url(#headSkinLight)"/>
+    <!-- Nostrils -->
+    <circle cx="48" cy="52" r="1.2" fill="#2E7D32"/>
+    <circle cx="56" cy="52" r="1.2" fill="#2E7D32"/>
+
+    <!-- Smiling Mouth -->
+    <path d="M42 61 Q52 72 62 61" fill="#B71C1C" stroke="#2E7D32" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M48 66 Q52 70 56 66 Z" fill="#EF5350"/>
+
+    <!-- Eyes (Turrets) -->
+    <!-- Left Eye -->
+    <circle cx="38" cy="38" r="14" fill="#66BB6A"/>
+    <circle cx="38" cy="38" r="11" fill="#FFFFFF"/>
+    <circle cx="40" cy="38" r="6.5" fill="url(#eyePupilSmall)"/>
+    <circle cx="38" cy="35" r="2.5" fill="#FFFFFF"/>
+
+    <!-- Right Eye -->
+    <circle cx="66" cy="38" r="14" fill="#66BB6A"/>
+    <circle cx="66" cy="38" r="11" fill="#FFFFFF"/>
+    <circle cx="64" cy="38" r="6.5" fill="url(#eyePupilSmall)"/>
+    <circle cx="62" cy="35" r="2.5" fill="#FFFFFF"/>
+
+    <!-- Eye Brow Arches -->
+    <path d="M28 32 Q38 24 48 34" fill="none" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M56 34 Q66 24 76 32" fill="none" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Rosy Cheeks -->
+    <ellipse cx="33" cy="59" rx="3.5" ry="2" fill="#EF5350" opacity="0.4"/>
+    <ellipse cx="71" cy="59" rx="3.5" ry="2" fill="#EF5350" opacity="0.4"/>
+  </g>
+
+  <!-- Little Sparkle at top right -->
+  <path d="M82 12 L84 17 L89 18 L84 20 L82 25 L80 20 L75 18 L80 17 Z" fill="#FBC02D"/>
+</svg>

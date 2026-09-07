@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FidelUp | Quanto ti costano i clienti che non tornano?</title>
+<meta name="description" content="Rispondi a 7 domande veloci e scopri il profilo della tua attività.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary: #2E7D32;
+        --primary-light: #4CAF50;
+        --primary-dark: #1B5E20;
+        --bg: #FFFFFF;
+        --surface: #FFFFFF;
+        --surface-green: #E8F5E9;
+        --surface-green-alt: #C8E6C9;
+        --text-dark: #1A1A1A;
+        --text-muted: #4A4A4A;
+        --font-main: 'Outfit', sans-serif;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: clip; }
+    body {
+        font-family: var(--font-main);
+        color: var(--text-dark);
+        background: var(--bg);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1, h2, h3 { font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; color: var(--text-dark); }
+    p { color: var(--text-muted); line-height: 1.6; }
+
+    .shell {
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 24px 20px 32px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrap { margin-bottom: 28px; display: none; }
+    .progress-wrap.visible { display: block; }
+    .progress-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    .progress-track {
+        width: 100%;
+        height: 6px;
+        background: #F0F0F0;
+        border-radius: 100px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 100px;
+        transition: width 0.4s ease;
+        width: 0%;
+    }
+
+    /* SCREENS */
+    .screen {
+        display: none;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        animation: fadeIn 0.35s ease;
+    }
+    .screen.active { display: flex; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nino-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+    .nino-wrap img {
+        height: 140px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    /* SCHERMATA 0 — APERTURA */
+    #screen-0 h1 {
+        font-size: clamp(1.8rem, 7vw, 2.3rem);
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    #screen-0 p.subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 32px;
+    }
+
+    /* BOTTONI */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 56px;
+        padding: 14px 28px;
+        border-radius: 100px;
+        font-family: var(--font-main);
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        width: 100%;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary {
+        background: white;
+        color: var(--primary-dark);
+        border: 2px solid var(--primary);
+        width: 100%;
+    }
+    .btn-secondary:hover { background: var(--surface-green); }
+
+    .microcopy {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 14px;
+        opacity: 0.85;
+    }
+
+    /* DOMANDE */
+    .question-title {
+        font-size: clamp(1.3rem, 5.5vw, 1.6rem);
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .option-btn {
+        font-family: var(--font-main);
+        background: white;
+        border: 2px solid #E0E0E0;
+        border-radius: var(--radius-md);
+        padding: 18px 20px;
+        min-height: 60px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .option-btn:hover { border-color: var(--primary-light); }
+    .option-btn.selected {
+        border-color: var(--primary);
+        background: var(--surface-green);
+    }
+    .option-btn:disabled { cursor: default; }
+
+    .nino-reaction {
+        display: none;
+        background: white;
+        border-radius: var(--radius-md);
+        padding: 16px;
+        border: 1px solid #EEEEEE;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-top: 4px;
+        align-items: center;
+        gap: 12px;
+    }
+    .nino-reaction.visible { display: flex; animation: fadeIn 0.3s ease; }
+    .nino-reaction img { height: 48px; width: auto; flex-shrink: 0; }
+
+    /* SCHERMATA CONTATTO */
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+    }
+    .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #E0E0E0;
+        border-radius: var(--radius-md);
+        font-family: var(--font-main);
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+    }
+    .form-group input:focus { outline: none; border-color: var(--primary); }
+
+    .toggle-group { display: flex; gap: 8px; margin-bottom: 16px; }
+    .toggle-btn {
+        flex: 1;
+        font-family: var(--font-main);
+        background: white;
+        border: 2px solid #E0E0E0;
+        border-radius: var(--radius-md);
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .toggle-btn.selected {
+        border-color: var(--primary);
+        background: var(--surface-green);
+        color: var(--primary-dark);
+    }
+
+    .consent-row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin: 24px 0;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+    }
+    .consent-row input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        accent-color: var(--primary);
+        flex-shrink: 0;
+    }
+
+    .field-error {
+        color: #D32F2F;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: 6px;
+        display: none;
+    }
+    .field-error.visible { display: block; }
+
+    /* SCHERMATA RISULTATO (MINI-INFORME) */
+    #screen-result {
+        background: #F9F9F9;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid #EEEEEE;
+        margin-bottom: 24px;
+    }
+    .result-profile-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 16px;
+    }
+    .result-profile-desc {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+    }
+    .result-action-plan {
+        background: white;
+        border-radius: var(--radius-md);
+        padding: 16px;
+        border-left: 4px solid var(--primary);
+    }
+    .result-action-plan h4 {
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+    }
+    
+    .result-ctas { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+
+    /* FOOTER */
+    .quiz-footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        padding: 24px 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+    <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-label" id="progress-label" aria-live="polite">Domanda 1 di 7</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- SCHERMATA 0 — APERTURA -->
+    <section class="screen active" id="screen-0">
+        <div class="nino-wrap">
+            <img src="assets/nino.png" alt="Nino FidelUp">
+        </div>
+        <h1>Scopri il profilo della tua attività</h1>
+        <p class="subtitle">Rispondi a 7 domande veloci per capire come stai gestendo i tuoi clienti e dove puoi migliorare.</p>
+        <button class="btn btn-primary" id="start-btn">Inizia il quiz →</button>
+        <div class="microcopy">Ci vogliono meno di 60 secondi.</div>
+    </section>
+
+    <!-- SCHERMATE DOMANDE -->
+    <div id="questions-container"></div>
+
+    <!-- SCHERMATA CATTURA CONTATTO -->
+    <section class="screen" id="screen-contact">
+        <h2 style="margin-bottom: 8px; text-align: center;">Abbiamo analizzato le tue risposte.</h2>
+        <p class="subtitle" style="text-align: center; margin-bottom: 24px;">Dicci dove mandare il tuo profilo dettagliato e la guida gratuita.</p>
+
+        <form id="contact-form" novalidate>
+            <div class="form-group">
+                <label for="q-nome">Nome e cognome</label>
+                <input type="text" id="q-nome" name="nome" required placeholder="Es. Mario Rossi">
+                <div class="field-error" id="err-nome">Inserisci il tuo nome.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="q-attivita">Nome della tua attività</label>
+                <input type="text" id="q-attivita" name="attivita" required placeholder="Es. Barberia Il Taglio">
+                <div class="field-error" id="err-attivita">Inserisci il nome della tua attività.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Come preferisci ricevere l'analisi?</label>
+                <div class="toggle-group" role="group">
+                    <button type="button" class="toggle-btn selected" data-contact="instagram">Instagram</button>
+                    <button type="button" class="toggle-btn" data-contact="whatsapp">WhatsApp</button>
+                    <button type="button" class="toggle-btn" data-contact="email">Email</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="q-contatto" id="contatto-label">Il tuo profilo Instagram</label>
+                <input type="text" id="q-contatto" name="contatto" required placeholder="@iltuoprofilo">
+                <div class="field-error" id="err-contatto">Inserisci un contatto valido.</div>
+            </div>
+
+            <div class="consent-row">
+                <input type="checkbox" id="q-privacy" name="privacy" required>
+                <label for="q-privacy">Acconsento a essere ricontattato da FidelUp in merito all'analisi della mia attività.</label>
+            </div>
+            <div class="field-error" id="err-privacy">Devi accettare per continuare.</div>
+
+            <button type="submit" class="btn btn-primary">Mostra il mio profilo →</button>
+        </form>
+    </section>
+
+    <!-- SCHERMATA RISULTATO -->
+    <section class="screen" id="screen-result-view">
+        <h2 style="margin-bottom: 24px;">Ecco cosa emerge dalla tua attività.</h2>
+
+        <div id="screen-result">
+            <div class="result-profile-title" id="profile-title">Profilo in caricamento...</div>
+            <div class="result-profile-desc" id="profile-desc"></div>
+            
+            <div class="result-action-plan">
+                <h4>Da dove iniziare:</h4>
+                <p id="profile-action"></p>
+            </div>
+        </div>
+
+        <div class="result-ctas">
+            <!-- CTA principale per vendere il servizio (modificato come da istruzioni) -->
+            <a href="https://fidelup.it/attivazione" class="btn btn-primary" id="btn-attivazione" target="_blank">Richiedi l'attivazione del servizio</a>
+            <!-- CTA secondaria per la guida -->
+            <a href="https://fidelup.info/guida-fidelizzazione.pdf" class="btn btn-secondary" target="_blank">Scarica la guida gratuita</a>
+        </div>
+    </section>
+
+    <div class="quiz-footer">FidelUp — Tu fai il tuo lavoro. Noi gestiamo la fidelizzazione.</div>
+
+</div>
+
+<script>
+(function() {
+    "use strict";
+
+    // IMMAGINI NINO CHAMELEON DA RUOTARE
+    const ninoImages = [
+        "assets/nino_chameleon_1.png",
+        "assets/nino_chameleon_2.png",
+        "assets/nino_chameleon_3.png",
+        "assets/nino_chameleon_4.png",
+        "assets/nino_chameleon_1.png",
+        "assets/nino_chameleon_2.png",
+        "assets/nino_chameleon_3.png"
+    ];
+
+    // ============================
+    // TODO: AGGIORNARE CON I TESTI ESATTI DAL DOCUMENTO ITALIANO (FidelUp_Quiz_Prompt_Antigravity.md)
+    // ============================
+    const questions = [
+        {
+            id: "q1",
+            title: "Dei tuoi ultimi 10 clienti, quanti pensi che torneranno il mese prossimo?",
+            options: [
+                { label: "Quasi tutti (9-10)", value: "a" },
+                { label: "La maggior parte (6-8)", value: "b" },
+                { label: "Circa la metà (3-5)", value: "c" },
+                { label: "Sinceramente non lo so", value: "d" }
+            ],
+            reaction: "La maggior parte di chi risponde qui... non ne è davvero sicuro."
+        },
+        {
+            id: "q2",
+            title: "Sapresti dire a memoria chi sono i tuoi clienti più abituali?",
+            options: [
+                { label: "Sì, li conosco a memoria", value: "a" },
+                { label: "Solo qualche nome", value: "b" },
+                { label: "Non saprei dirlo con certezza", value: "c" }
+            ],
+            reaction: "Normale. Quasi nessuno tiene traccia di questo in modo sistematico."
+        },
+        {
+            id: "q3",
+            title: "Ti accorgi quando un cliente abituale smette di venire, senza dirti nulla?",
+            options: [
+                { label: "Sì, me ne accorgo subito", value: "a" },
+                { label: "A volte, dopo un po'", value: "b" },
+                { label: "Quasi mai — solo se manca da tanto", value: "c" }
+            ],
+            reaction: "Se non te ne accorgi subito, non hai modo di reagire in tempo."
+        },
+        {
+            id: "q4",
+            title: "Usi già un sistema per far tornare i clienti?",
+            options: [
+                { label: "Sì, un sistema avanzato", value: "a" },
+                { label: "Sì, tessere cartacee", value: "b" },
+                { label: "No, mi affido al passaparola", value: "c" }
+            ],
+            reaction: "Le tessere cartacee o il solo passaparola oggi non bastano più."
+        },
+        {
+            id: "q5",
+            title: "Pensi che un cliente che si sente riconosciuto tornerebbe più spesso?",
+            options: [
+                { label: "Sicuramente sì", value: "a" },
+                { label: "Probabilmente sì", value: "b" },
+                { label: "Non credo cambi molto", value: "c" }
+            ],
+            reaction: "Esatto. L'attenzione personale è la chiave della fidelizzazione."
+        },
+        {
+            id: "q6",
+            title: "Pensi che sistemi di fidelizzazione siano solo per grandi catene?",
+            options: [
+                { label: "Sì, per me non ha senso", value: "a" },
+                { label: "Forse potrebbe funzionare", value: "b" },
+                { label: "No, funzionano per tutti", value: "c" }
+            ],
+            reaction: "Non serve essere una catena, serve solo un sistema automatico."
+        },
+        {
+            id: "q7", // Placeholder per la 7a domanda richiesta
+            title: "Quanto tempo hai a disposizione per gestire il marketing del tuo locale?",
+            options: [
+                { label: "Ho molto tempo", value: "a" },
+                { label: "Un po' di tempo ma non costante", value: "b" },
+                { label: "Nessun tempo, faccio già tutto io", value: "c" }
+            ],
+            reaction: "Ecco perché FidelUp lo gestisce completamente al posto tuo."
+        }
+    ];
+
+    const profiles = {
+        "relazione_forte": {
+            title: "Relazione forte, sistema debole",
+            desc: "Hai un'ottima relazione personale con i tuoi clienti abituali, ma ti manca visibilità sulla frequenza reale del loro ritorno. Affidarsi solo alla memoria significa perdere opportunità.",
+            action: "Inizia a tracciare sistematicamente chi torna e chi no, senza dipendere solo dalla tua memoria."
+        },
+        "ritorno_irregolare": {
+            title: "Clienti presenti, ritorno irregolare",
+            desc: "Hai una clientela, ma il loro ritorno non è abbastanza prevedibile. Vengono quando si ricordano o quando ne hanno bisogno urgente, non per un'abitudine consolidata.",
+            action: "Costruisci un motivo per tornare: premi, incentivi o piccoli riconoscimenti che rendano la scelta ovvia."
+        },
+        "clienti_persi": {
+            title: "Clienti che scompaiono",
+            desc: "Hai poca capacità di rilevare i clienti prima che si perdano del tutto. Spesso ti accorgi che un cliente non viene più quando è ormai troppo tardi per recuperarlo.",
+            action: "Attiva un sistema di promemoria automatico che si accorga per te di chi sta per abbandonare."
+        },
+        "base_solida": {
+            title: "Base solida, opportunità di crescita",
+            desc: "La tua fidelizzazione funziona già abbastanza bene in modo organico. Ora il passo successivo è renderla sistematica e scalabile, per trasformare ogni cliente in un cliente VIP.",
+            action: "Passa a un sistema digitale che ti permetta di misurare l'aumento della frequenza."
+        }
+    };
+
+    const answers = {};
+    let currentQuestionIndex = 0;
+    let selectedContactType = "instagram";
+
+    const questionsContainer = document.getElementById("questions-container");
+
+    questions.forEach((q, i) => {
+        const section = document.createElement("section");
+        section.className = "screen";
+        section.id = "screen-q" + i;
+
+        const imgSrc = ninoImages[i % ninoImages.length];
+
+        section.innerHTML = `
+            <div class="nino-wrap">
+                <img src="${imgSrc}" alt="Nino">
+            </div>
+            <div class="question-title">${q.title}</div>
+            <div class="options" role="group">
+                ${q.options.map((opt, oi) => `
+                    <button type="button" class="option-btn" data-qindex="${i}" data-oindex="${oi}">
+                        ${opt.label}
+                    </button>
+                `).join("")}
+            </div>
+            <div class="nino-reaction" id="reaction-${i}">
+                <img src="assets/nino_transparent.png" alt="Reazione">
+                <span>${q.reaction}</span>
+            </div>
+        `;
+
+        questionsContainer.appendChild(section);
+    });
+
+    function showScreen(id) {
+        document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
+
+    function updateProgress(index) {
+        const wrap = document.getElementById("progress-wrap");
+        wrap.classList.add("visible");
+        document.getElementById("progress-label").textContent = `Domanda ${index + 1} di 7`;
+        document.getElementById("progress-fill").style.width = `${((index + 1) / questions.length) * 100}%`;
+    }
+
+    document.getElementById("start-btn").addEventListener("click", () => {
+        currentQuestionIndex = 0;
+        updateProgress(0);
+        showScreen("screen-q0");
+    });
+
+    questionsContainer.addEventListener("click", (e) => {
+        const btn = e.target.closest(".option-btn");
+        if (!btn || btn.disabled) return;
+
+        const qIndex = parseInt(btn.dataset.qindex, 10);
+        const option = questions[qIndex].options[btn.dataset.oindex];
+
+        const screen = document.getElementById("screen-q" + qIndex);
+        screen.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+        btn.classList.add("selected");
+
+        answers[questions[qIndex].id] = option.value;
+        document.getElementById("reaction-" + qIndex).classList.add("visible");
+
+        setTimeout(() => {
+            const nextIndex = qIndex + 1;
+            if (nextIndex < questions.length) {
+                currentQuestionIndex = nextIndex;
+                updateProgress(nextIndex);
+                showScreen("screen-q" + nextIndex);
+            } else {
+                document.getElementById("progress-wrap").classList.remove("visible");
+                showScreen("screen-contact");
+            }
+        }, 1200);
+    });
+
+    // CONTATTO
+    const contactLabels = {
+        instagram: { label: "Il tuo profilo Instagram", placeholder: "@iltuoprofilo" },
+        whatsapp: { label: "Il tuo numero WhatsApp", placeholder: "333 123 4567" },
+        email: { label: "La tua email", placeholder: "nome@esempio.it" }
+    };
+
+    document.querySelectorAll(".toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".toggle-btn").forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            selectedContactType = btn.dataset.contact;
+            const meta = contactLabels[selectedContactType];
+            document.getElementById("contatto-label").textContent = meta.label;
+            document.getElementById("q-contatto").placeholder = meta.placeholder;
+        });
+    });
+
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById("q-nome").value.trim();
+        const attivita = document.getElementById("q-attivita").value.trim();
+        const contatto = document.getElementById("q-contatto").value.trim();
+        const privacy = document.getElementById("q-privacy").checked;
+
+        let valid = true;
+        const toggleErr = (id, show) => document.getElementById(id).classList.toggle("visible", show);
+        
+        toggleErr("err-nome", !nome); if (!nome) valid = false;
+        toggleErr("err-attivita", !attivita); if (!attivita) valid = false;
+        toggleErr("err-contatto", !contatto); if (!contatto) valid = false;
+        toggleErr("err-privacy", !privacy); if (!privacy) valid = false;
+
+        if (!valid) return;
+
+        // Logica semplificata per determinare il profilo
+        const aCount = Object.values(answers).filter(v => v === "a").length;
+        const cCount = Object.values(answers).filter(v => v === "c").length;
+        
+        let profileKey = "relazione_forte"; // Default
+        if (aCount > 4) profileKey = "base_solida";
+        else if (cCount > 3) profileKey = "clienti_persi";
+        else if (aCount <= 2 && cCount <= 2) profileKey = "ritorno_irregolare";
+
+        const profile = profiles[profileKey];
+        document.getElementById("profile-title").textContent = profile.title;
+        document.getElementById("profile-desc").textContent = profile.desc;
+        document.getElementById("profile-action").textContent = profile.action;
+
+        // URL Webhook (sostituisci con l'URL fornito da Google Apps Script)
+        const WEBHOOK_URL = "INSERIRE_QUI_L_URL_DELLO_SCRIPT_GOOGLE";
+
+        const waLink = "https://wa.me/393398420279?text=Ciao%2C%20ho%20fatto%20il%20quiz%20FidelUp%20e%20vorrei%20richiedere%20l'attivazione.";
+        document.getElementById("btn-attivazione").href = waLink;
+
+        // Invia i dati a Google Sheets
+        sendLead({ 
+            nome, 
+            attivita, 
+            contatto_tipo: selectedContactType, 
+            contatto_valore: contatto, 
+            privacy_consent: privacy ? 'si' : 'no',
+            profilo: profile.title
+        }, WEBHOOK_URL);
+
+        showScreen("screen-result-view");
+    });
+
+    async function sendLead(data, webhookUrl) {
+        if (!webhookUrl || webhookUrl.includes("INSERIRE_QUI")) {
+            console.warn("[quiz] Webhook non configurato:", data);
+            return;
+        }
+        
+        const payload = {
+            source: "Quiz_Barbershop_V1",
+            nome: data.nome,
+            attivita: data.attivita,
+            contatto_tipo: data.contatto_tipo,
+            contatto_valore: data.contatto_valore,
+            profilo_risultato: data.profilo,
+            privacy_consent: data.privacy_consent,
+            timestamp: new Date().toISOString()
+        };
+
+        try {
+            await fetch(webhookUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            console.log("[quiz] Lead inviato con successo.");
+        } catch (err) {
+            console.error("[quiz] Errore invio lead:", err);
+        }
+    }
+
+})();
+</script>
+
+</body>
+</html>
